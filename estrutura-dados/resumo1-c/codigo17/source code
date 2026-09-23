@@ -1,0 +1,48 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+float calcularMedia (int, int, int);
+int encontrarMaior (int, int, int);
+
+int main()
+{
+  int n1, n2, n3, maior;
+  float media;
+  
+  printf("\a\a\a\a");
+  printf("\t\t Funções\n\n");
+  printf("Digite um número: ");
+  scanf("%d", &n1);
+  printf("Digite o segundo número: ");
+  scanf("%d", &n2);
+  printf("Digite o terceiro número: ");
+  scanf("%d", &n3);
+  maior = encontrarMaior(n1, n2, n3);
+  media = calcularMedia(n1, n2, n3);
+  printf("\nO maior número é: %d\n", maior);
+  printf("A média é: %.2f", media);
+  
+  return 0;
+}
+
+int encontrarMaior(int a, int b, int c) {
+    int m = a;
+    if (b > m) {
+        m = b;
+    }
+    if (c > m) {
+        m = c;
+    } 
+    return m;
+}
+
+float calcularMedia(int a, int b, int c){
+  return (float)(a + b + c) / 3;
+  }

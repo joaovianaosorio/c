@@ -1,0 +1,68 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+void calculoVantagens(float numeroHoras, float salarioHora, int numeroFilhos, float valorPorFilho,
+                      float *salarioBruto, float *salarioFamilia, float *vantagens) {
+    *salarioBruto = numeroHoras * salarioHora;
+    *salarioFamilia = numeroFilhos * valorPorFilho;
+    *vantagens = *salarioBruto + *salarioFamilia;
+}
+
+void calculoDeducoes(float salarioBruto, float taxaIR,
+                     float *INSS, float *IRPF, float *deducoes) {
+    *INSS = salarioBruto * 0.08f;
+    *IRPF = salarioBruto * taxaIR;
+    *deducoes = *INSS + *IRPF;
+}
+
+int main() {
+    float numeroHoras, salarioHora, valorPorFilho, taxaIR;
+    int numeroFilhos;
+
+    float salarioBruto, salarioFamilia, vantagens;
+    float INSS, IRPF, deducoes;
+
+    printf("--- ENTRADA DE DADOS ---\n");
+    printf("Número de horas trabalhadas: ");
+    scanf("%f", &numeroHoras);
+
+    printf("Valor do salário por hora: R$ ");
+    scanf("%f", &salarioHora);
+
+    printf("Número de filhos: ");
+    scanf("%d", &numeroFilhos);
+
+    printf("Valor por filho: R$ ");
+    scanf("%f", &valorPorFilho);
+
+    printf("Taxa do IRPF (ex: 0.15 para 15%%): ");
+    scanf("%f", &taxaIR);
+
+    calculoVantagens(numeroHoras, salarioHora, numeroFilhos, valorPorFilho,
+                     &salarioBruto, &salarioFamilia, &vantagens);
+
+    calculoDeducoes(salarioBruto, taxaIR,
+                    &INSS, &IRPF, &deducoes);
+
+    printf("\n--- RESULTADOS (VANTAGENS) ---\n");
+    printf("Salário Bruto: R$ %.2f\n", salarioBruto);
+    printf("Salário Família: R$ %.2f\n", salarioFamilia);
+    printf("Total de Vantagens: R$ %.2f\n", vantagens);
+
+    printf("\n--- RESULTADOS (DEDUÇÕES) ---\n");
+    printf("INSS (8%%): R$ %.2f\n", INSS);
+    printf("IRPF: R$ %.2f\n", IRPF);
+    printf("Total de Deduções: R$ %.2f\n", deducoes);
+
+    printf("\n--- SALÁRIO LÍQUIDO ---\n");
+    printf("Salário Líquido: R$ %.2f\n", vantagens - deducoes);
+
+    return 0;
+}
