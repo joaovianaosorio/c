@@ -1,0 +1,37 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+// 1. Declarar a struct interna primeiro 
+struct DataNascimento {
+ int dia; 
+ int mes; 
+ int ano; 
+};
+
+// 2. Declarar a struct principal usando a struct interna
+struct Aluno { 
+ int matricula; 
+ char nome; 
+ struct DataNascimento nascimento; // Struct aninhada 
+};
+
+int main()
+{
+    printf("\a\a\a\a\a");
+    struct Aluno a1;
+    a1.matricula = 2025001; 
+    a1.nascimento.dia = 15; // Acesso encadeado 
+    a1.nascimento.mes = 8; 
+    a1.nascimento.ano = 2002;
+    
+    printf("Matricula: %d | Data Nasc: %02d/%02d/%d\n", a1.matricula, a1.nascimento.dia, a1.nascimento.mes, a1.nascimento.ano);
+
+    return 0;
+}

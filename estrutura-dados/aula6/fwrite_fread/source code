@@ -1,0 +1,38 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+typedef struct { 
+    int id; 
+    float preco; 
+} PRODUTO;
+
+int main()
+{
+    printf("\a\a\a\a\a\a");
+    PRODUTO p1 = {501, 29.90f};
+    
+    // Grava a struct inteira em binário 
+    FILE *f = fopen("produto.dat", "wb");
+    if (f != NULL){ 
+        fwrite(&p1, sizeof(PRODUTO), 1, f); // [cite: 6]
+        fclose(f); 
+    }
+
+    PRODUTO p2; 
+    // Lê a struct inteira de uma só vez
+    f = fopen("produto.dat", "rb"); 
+    if (f != NULL){
+        fread(&amp;p2, sizeof(PRODUTO), 1, f); // [cite: 6, 19] 
+        printf("Lido do binário -&gt; ID: %d | Preço: R$ %.2f\n", p2.id, p2.preco); 
+        fclose(f);
+    }
+        
+    return 0;
+}

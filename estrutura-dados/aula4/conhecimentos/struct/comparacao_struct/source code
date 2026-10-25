@@ -1,0 +1,34 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <string.h>
+
+struct Ponto { 
+ int x; 
+ int y; 
+};
+
+int main()
+{
+    printf("\a\a\a\a\a\a\a");
+    struct Ponto p1 = {10, 20}; 
+    struct Ponto p2;
+    
+    // 1. ATRIBUIÇÃO DIRETA (Permitida!) 
+    p2 = p1; // Copia p1.x para p2.x e p1.y para p2.y integralmente
+    printf("p2.x = %d, p2.y = %d\\n", p2.x, p2.y);
+    
+    // 2. COMPARAÇÃO (Deve ser feita membro por membro!)
+    // if (p1 == p2) -> ERRO DE COMPILAÇÃO!
+    if (p1.x == p2.x && p1.y == p2.y) { 
+     printf("Os pontos p1 e p2 sao iguais.\n"); 
+    }
+    
+    return 0;
+}

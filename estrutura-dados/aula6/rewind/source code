@@ -1,0 +1,49 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+typedef struct{ 
+    int id; 
+    float nota; 
+} ALUNO;
+
+int main()
+{
+    printf("\a\a\a\a\a\a");
+    ALUNO turma[3] = {{101, 8.5}, {102, 9.0}, {103, 7.5}};
+    
+    // Gravando os 3 alunos no arquivo binário
+    FILE *f = fopen("turma.dat", "wb");
+    if (f != NULL) { 
+        fwrite(turma, sizeof(ALUNO), 3, f);
+        fclose(f); 
+    }
+
+    // Lendo DIRETO o 2º aluno (índice 1) sem ler o 1º!
+    f = fopen("turma.dat", "rb");
+    if (f != NULL){ 
+        ALUNO a;
+        
+        // Pula o tamanho de 1 ALUNO a partir do início (SEEK\_SET) 
+        fseek(f, 1 * sizeof(ALUNO), SEEK_SET); // [cite: 8]
+        
+        fread(&a, sizeof(ALUNO), 1, f); // Lê o 2º aluno 
+        printf("2º Aluno (acesso direto): ID = %d | Nota = %.1f\n", a.id, a.nota);
+        
+        // Volta para o início do arquivo 
+        rewind(f); // [cite: 8]
+        
+        fread(&amp;a, sizeof(ALUNO), 1, f); // Lê o 1º aluno 
+        printf("1º Aluno (após rewind): ID = %d | Nota = %.1f\n", a.id, a.nota);
+        
+        fclose(f);
+    }
+    
+    return 0;
+}
